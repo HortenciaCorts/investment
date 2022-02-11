@@ -1,0 +1,72 @@
+.container{
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgb(236, 236, 236);
+}
+.container .infos{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 450px;
+}
+.container .infos .form{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+h1{
+    text-align: center;
+}
+p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.active{
+    background-color: #ED8E53;
+    color: #FFF;
+}
+.selectButton{
+    display: flex;
+}
+.selectButton div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 90px;
+    height: 36px;
+
+    border: 1px solid rgb(59, 59, 59);
+    cursor: pointer;
+}
+.selectButton div:first-child{
+    border-radius: 8px 0 0 8px;
+}
+.selectButton div:last-child{
+    border-radius: 0 8px 8px 0;
+}
+label{
+    padding: 20px 0;
+}
+input{
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+    outline: none;
+    padding: 14px;
+}
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+}
+button{
+    padding: 10px;
+    font-weight: bold;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+button.active{
+    color: #000;
+    border-color: #ED8E53;
+}
