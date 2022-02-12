@@ -1,0 +1,23 @@
+.containerSimulationResult{
+    padding-left: 25px;
+}
+.cardContainer{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 150px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.459);
+
+    margin: 20px 15px 20px 0;
+    padding: 5px;
+    box-shadow: 1px 2px 3px 1px rgb(0 0 0 / 21%);
+}

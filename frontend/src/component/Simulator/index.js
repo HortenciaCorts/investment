@@ -5,7 +5,6 @@ import './styles.css'
 const Simulator = () => {
     const [valueIpca, setValueIpca] = useState('');
     const [valueCdi, setValueCdi] = useState('');
-    const [value, setValue] = useState('');
 
     const getBack = async (resources) => {
         const api = await fetch(`http://localhost:3000/${resources}`);
@@ -22,8 +21,7 @@ const Simulator = () => {
     getBack('simulacoes')
 
     return (
-        <div className="container">
-            <h1>Simulador de Investimentos</h1>
+        <div className="containerSimulator">
             <h3>Simulador</h3>
             <div className='infos'>
                 <div className='form'>
