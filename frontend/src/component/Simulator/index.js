@@ -1,7 +1,26 @@
+import { useState } from 'react';
 import iconInfo from '../../assets/info.svg';
 import './styles.css'
 
 const Simulator = () => {
+    const [valueIpca, setValueIpca] = useState('');
+    const [valueCdi, setValueCdi] = useState('');
+    const [value, setValue] = useState('');
+
+    const getBack = async (resources) => {
+        const api = await fetch(`http://localhost:3000/${resources}`);
+        const response = await api.json();
+        console.log(response)
+        if(resources === 'indicadores'){
+            setValueCdi(response[0].valor);
+            setValueIpca(response[1].valor);
+        }
+        if(resources === 'simulações'){
+        }
+    }
+    getBack('indicadores')
+    getBack('simulacoes')
+
     return (
         <div className="container">
             <h1>Simulador de Investimentos</h1>
@@ -11,7 +30,7 @@ const Simulator = () => {
                     <div>
                         <p>
                             Rendimento
-                            <img src={iconInfo} alt="" />
+                            <img src={iconInfo} alt="Icone de Informação" />
                         </p>
                         <div className='selectButton'>
                             <div className='active'>Bruto</div>
@@ -19,13 +38,13 @@ const Simulator = () => {
                         </div>
                     </div>
                     <label>Aporte Inicial
-                        <input type="number" />
+                    <span>R$<input type="number" /></span>
                     </label>
                     <label>Prazo em meses
                         <input type="number" />
                     </label>
                     <label>IPCA (ao ano)
-                        <input type="number" />
+                        <input type="text" value={valueIpca + '%'} />
                     </label>
                     <button>Limpar campos</button>
                 </div>
@@ -33,7 +52,7 @@ const Simulator = () => {
                     <div>
                         <p>
                             Tipos de indexação
-                            <img src={iconInfo} alt="" />
+                            <img src={iconInfo} alt="Icone de Informação" />
                         </p>
                         <div className='selectButton'>
                             <div>PRÉ</div>
@@ -42,13 +61,13 @@ const Simulator = () => {
                         </div>
                     </div>
                     <label>Aporte Mensal
-                        <input type="number" />
+                        <span>R$<input type="number" /></span>
                     </label>
                     <label>Rentabilidade
                         <input type="number" />
                     </label>
                     <label>CDI (ao ano)
-                        <input type="number" />
+                        <input type="text" value={valueCdi + '%'} />
                     </label>
                     <button className='active'>Simular</button>
                 </div>
