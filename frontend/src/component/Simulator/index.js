@@ -19,7 +19,34 @@ const Simulator = () => {
     }
     getBack('indicadores')
     getBack('simulacoes')
-
+    
+    const handleTypeRend = {
+        typeBruto(){
+            document.querySelector('.typeBruto').classList.add('active');
+            document.querySelector('.typeLiquido').classList.remove('active');
+        },
+        typeLiquido(){
+            document.querySelector('.typeLiquido').classList.add('active');
+            document.querySelector('.typeBruto').classList.remove('active');
+        }
+    }
+    const handleTypeIndex = {
+        typePre(){
+            document.querySelector('.typePre').classList.add('active');
+            document.querySelector('.typePos').classList.remove('active');
+            document.querySelector('.typeFix').classList.remove('active');
+        },
+        typePos(){
+            document.querySelector('.typePos').classList.add('active');
+            document.querySelector('.typePre').classList.remove('active');
+            document.querySelector('.typeFix').classList.remove('active');
+        },
+        typeFix(){
+            document.querySelector('.typeFix').classList.add('active');
+            document.querySelector('.typePos').classList.remove('active');
+            document.querySelector('.typePre').classList.remove('active');
+        },
+    }
     return (
         <div className="containerSimulator">
             <h3>Simulador</h3>
@@ -31,8 +58,8 @@ const Simulator = () => {
                             <img src={iconInfo} alt="Icone de Informação" />
                         </p>
                         <div className='selectButton'>
-                            <div className='active'>Bruto</div>
-                            <div>Líquido</div>
+                            <div className='typeBruto active' onClick={handleTypeRend.typeBruto}>Bruto</div>
+                            <div className='typeLiquido' onClick={handleTypeRend.typeLiquido}>Líquido</div>
                         </div>
                     </div>
                     <label>Aporte Inicial
@@ -53,9 +80,9 @@ const Simulator = () => {
                             <img src={iconInfo} alt="Icone de Informação" />
                         </p>
                         <div className='selectButton'>
-                            <div>PRÉ</div>
-                            <div className='active'>POS</div>
-                            <div>FIXADO</div>
+                            <div className='typePre active' onClick={handleTypeIndex.typePre}>PRÉ</div>
+                            <div className='typePos' onClick={handleTypeIndex.typePos}>POS</div>
+                            <div className='typeFix' onClick={handleTypeIndex.typeFix}>FIXADO</div>
                         </div>
                     </div>
                     <label>Aporte Mensal
