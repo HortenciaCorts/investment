@@ -1,24 +1,17 @@
 import { useState } from 'react';
 import iconInfo from '../../assets/info.svg';
+import getApi from '../../server';
 import './styles.css'
 
 const Simulator = () => {
-    const [valueIpca, setValueIpca] = useState('');
     const [valueCdi, setValueCdi] = useState('');
-
-    const getBack = async (resources) => {
-        const api = await fetch(`http://localhost:3000/${resources}`);
-        const response = await api.json();
-        console.log(response)
-        if(resources === 'indicadores'){
-            setValueCdi(response[0].valor);
-            setValueIpca(response[1].valor);
-        }
-        if(resources === 'simulações'){
-        }
+    const [valueIpca, setValueIpca] = useState('');
+    const getInfo = async () =>{
+        const response = await getApi('indicadores');
+        setValueCdi(response[0].valor)
+        setValueIpca(response[1].valor)
     }
-    getBack('indicadores')
-    getBack('simulacoes')
+    getInfo()
     
     const handleTypeRend = {
         typeBruto(){
@@ -69,7 +62,7 @@ const Simulator = () => {
                         <input type="number" />
                     </label>
                     <label>IPCA (ao ano)
-                        <input type="text" value={valueIpca + '%'} />
+                        <input type="text" value={valueIpca + '%'} readOnly />
                     </label>
                     <button>Limpar campos</button>
                 </div>
@@ -92,7 +85,7 @@ const Simulator = () => {
                         <input type="number" />
                     </label>
                     <label>CDI (ao ano)
-                        <input type="text" value={valueCdi + '%'} />
+                        <input type="text" value={valueCdi + '%'} readOnly />
                     </label>
                     <button className='active'>Simular</button>
                 </div>
