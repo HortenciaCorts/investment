@@ -1,46 +1,62 @@
 import { useState } from 'react';
 import iconInfo from '../../assets/info.svg';
 import getApi from '../../server';
+import SimulationResult from '../SimulationResult';
 import './styles.css'
 
 const Simulator = () => {
     const [valueCdi, setValueCdi] = useState('');
     const [valueIpca, setValueIpca] = useState('');
-    const getInfo = async () =>{
-        const response = await getApi('indicadores');
-        setValueCdi(response[0].valor)
-        setValueIpca(response[1].valor)
+
+    const [simulacoes, setSimulacoes] = useState('');
+    const [tipoRendimento, setTipoRendimento] = useState('bruto');
+    const [tipoIndexacao, setTipoIndexacao] = useState('pre');
+    
+    const getInfo = async (resources) =>{
+        const response = await getApi(resources);
+            if(resources === 'indicadores'){
+                setValueCdi(response[0].valor);
+                setValueIpca(response[1].valor);
+            }else if(resources === 'simulacoes'){
+                setSimulacoes(response);
+            }
     }
-    getInfo()
+    getInfo('indicadores')
     
     const handleTypeRend = {
         typeBruto(){
+            setTipoRendimento('bruto');
             document.querySelector('.typeBruto').classList.add('active');
             document.querySelector('.typeLiquido').classList.remove('active');
         },
         typeLiquido(){
+            setTipoRendimento('liquido');
             document.querySelector('.typeLiquido').classList.add('active');
             document.querySelector('.typeBruto').classList.remove('active');
         }
     }
     const handleTypeIndex = {
         typePre(){
+            setTipoIndexacao('pre');
             document.querySelector('.typePre').classList.add('active');
             document.querySelector('.typePos').classList.remove('active');
             document.querySelector('.typeFix').classList.remove('active');
         },
         typePos(){
+            setTipoIndexacao('pos');
             document.querySelector('.typePos').classList.add('active');
             document.querySelector('.typePre').classList.remove('active');
             document.querySelector('.typeFix').classList.remove('active');
         },
         typeFix(){
+            setTipoIndexacao('ipca');
             document.querySelector('.typeFix').classList.add('active');
             document.querySelector('.typePos').classList.remove('active');
             document.querySelector('.typePre').classList.remove('active');
         },
     }
     return (
+        <div className='containerInfos'>
         <div className="containerSimulator">
             <h3>Simulador</h3>
             <div className='infos'>
@@ -87,9 +103,13 @@ const Simulator = () => {
                     <label>CDI (ao ano)
                         <input type="text" value={valueCdi + '%'} readOnly />
                     </label>
-                    <button className='active'>Simular</button>
+                    <button className='active' onClick={e => getInfo('simulacoes')}>Simular</button>
                 </div>
             </div>
+        </div>
+            {simulacoes != '' && 
+            <SimulationResult simulacoes={simulacoes} 
+                tipoIndexacao={tipoIndexacao} tipoRendimento={tipoRendimento} />}
         </div>
     )
 }
