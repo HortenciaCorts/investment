@@ -20,7 +20,7 @@ const SimulationResult = ({simulacoes, tipoIndexacao, tipoRendimento}) => {
                 setGanhoLiquido(element.ganhoLiquido);
             }
         });
-    }, [simulacoes])
+    }, [simulacoes, tipoIndexacao, tipoRendimento])
     return(
         <div className="containerSimulationResult">
             <h3>Resultado da Simulação</h3>

@@ -107,7 +107,7 @@ const Simulator = () => {
                 </div>
             </div>
         </div>
-            {simulacoes != '' && 
+            {simulacoes !== '' && 
             <SimulationResult simulacoes={simulacoes} 
                 tipoIndexacao={tipoIndexacao} tipoRendimento={tipoRendimento} />}
         </div>
