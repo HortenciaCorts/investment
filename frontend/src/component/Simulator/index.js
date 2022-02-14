@@ -11,105 +11,142 @@ const Simulator = () => {
     const [simulacoes, setSimulacoes] = useState('');
     const [tipoRendimento, setTipoRendimento] = useState('bruto');
     const [tipoIndexacao, setTipoIndexacao] = useState('pre');
-    
-    const getInfo = async (resources) =>{
+
+    const getInfo = async (resources) => {
         const response = await getApi(resources);
-            if(resources === 'indicadores'){
-                setValueCdi(response[0].valor);
-                setValueIpca(response[1].valor);
-            }else if(resources === 'simulacoes'){
-                setSimulacoes(response);
-            }
+        if (resources === 'indicadores') {
+            setValueCdi(response[0].valor);
+            setValueIpca(response[1].valor);
+        } else if (resources === 'simulacoes') {
+            setSimulacoes(response);
+        }
     }
     getInfo('indicadores')
-    
+
     const handleTypeRend = {
-        typeBruto(){
+        typeBruto() {
             setTipoRendimento('bruto');
             document.querySelector('.typeBruto').classList.add('active');
             document.querySelector('.typeLiquido').classList.remove('active');
         },
-        typeLiquido(){
+        typeLiquido() {
             setTipoRendimento('liquido');
             document.querySelector('.typeLiquido').classList.add('active');
             document.querySelector('.typeBruto').classList.remove('active');
         }
     }
     const handleTypeIndex = {
-        typePre(){
+        typePre() {
             setTipoIndexacao('pre');
             document.querySelector('.typePre').classList.add('active');
             document.querySelector('.typePos').classList.remove('active');
             document.querySelector('.typeFix').classList.remove('active');
         },
-        typePos(){
+        typePos() {
             setTipoIndexacao('pos');
             document.querySelector('.typePos').classList.add('active');
             document.querySelector('.typePre').classList.remove('active');
             document.querySelector('.typeFix').classList.remove('active');
         },
-        typeFix(){
+        typeFix() {
             setTipoIndexacao('ipca');
             document.querySelector('.typeFix').classList.add('active');
             document.querySelector('.typePos').classList.remove('active');
             document.querySelector('.typePre').classList.remove('active');
         },
     }
+
+    const limparCampos = () => {
+        document.querySelector('form').reset()
+    }
+
+    const simular = (e) => {
+        e.preventDefault();
+        getInfo('simulacoes');
+    }
+
+    const formatarMoeda = (idName) => {
+        var elemento = document.getElementById(idName);
+        var valor = elemento.value;
+
+        valor = parseInt(valor.replace(/[\D]+/g, ''));
+        valor = valor + '';
+        valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+        if (valor.length > 6) {
+            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+        }
+
+        elemento.value = valor;
+        if (valor === 'NaN') elemento.value = '';
+    }
+
+    const formatarInputs = (idName) => {
+        var elemento = document.getElementById(idName);
+        var valor = elemento.value;
+
+        valor = parseInt(valor.replace(/[\D]+/g, ''));
+        valor = valor + '';
+
+        idName === 'prazoMeses' ? elemento.value = valor : elemento.value = valor + '%';
+        if (valor === 'NaN') elemento.value = '';
+    }
+
     return (
         <div className='containerInfos'>
-        <div className="containerSimulator">
-            <h3>Simulador</h3>
-            <div className='infos'>
-                <div className='form'>
-                    <div>
-                        <p>
-                            Rendimento
-                            <img src={iconInfo} alt="Icone de Informação" />
-                        </p>
-                        <div className='selectButton'>
-                            <div className='typeBruto active' onClick={handleTypeRend.typeBruto}>Bruto</div>
-                            <div className='typeLiquido' onClick={handleTypeRend.typeLiquido}>Líquido</div>
+            <div className="containerSimulator">
+                <h3>Simulador</h3>
+                <div className='infos'>
+                    <form>
+                        <div>
+                            <p>
+                                Rendimento
+                                <img src={iconInfo} alt="Icone de Informação" />
+                            </p>
+                            <div className='selectButton'>
+                                <div className='typeBruto active' onClick={handleTypeRend.typeBruto}>Bruto</div>
+                                <div className='typeLiquido' onClick={handleTypeRend.typeLiquido}>Líquido</div>
+                            </div>
                         </div>
-                    </div>
-                    <label>Aporte Inicial
-                    <span>R$<input type="number" /></span>
-                    </label>
-                    <label>Prazo em meses
-                        <input type="number" />
-                    </label>
-                    <label>IPCA (ao ano)
-                        <input type="text" value={valueIpca + '%'} readOnly />
-                    </label>
-                    <button>Limpar campos</button>
-                </div>
-                <div className='form'>
-                    <div>
-                        <p>
-                            Tipos de indexação
-                            <img src={iconInfo} alt="Icone de Informação" />
-                        </p>
-                        <div className='selectButton'>
-                            <div className='typePre active' onClick={handleTypeIndex.typePre}>PRÉ</div>
-                            <div className='typePos' onClick={handleTypeIndex.typePos}>POS</div>
-                            <div className='typeFix' onClick={handleTypeIndex.typeFix}>FIXADO</div>
+                        <label>Aporte Inicial
+                            <span>R$<input type="text" maxLength="9" id="aporteInicial" onChange={e => formatarMoeda('aporteInicial')} /></span>
+                        </label>
+                        <label>Prazo em meses
+                            <input type="text" id="prazoMeses" onChange={e => formatarInputs('prazoMeses')} />
+                        </label>
+                        <label>IPCA (ao ano)
+                            <input type="text" value={valueIpca + '%'} readOnly />
+                        </label>
+                        <button onClick={limparCampos}>Limpar campos</button>
+                    </form>
+                    <form>
+                        <div>
+                            <p>
+                                Tipos de indexação
+                                <img src={iconInfo} alt="Icone de Informação" />
+                            </p>
+                            <div className='selectButton'>
+                                <div className='typePre active' onClick={handleTypeIndex.typePre}>PRÉ</div>
+                                <div className='typePos' onClick={handleTypeIndex.typePos}>POS</div>
+                                <div className='typeFix' onClick={handleTypeIndex.typeFix}>FIXADO</div>
+                            </div>
                         </div>
-                    </div>
-                    <label>Aporte Mensal
-                        <span>R$<input type="number" /></span>
-                    </label>
-                    <label>Rentabilidade
-                        <input type="number" />
-                    </label>
-                    <label>CDI (ao ano)
-                        <input type="text" value={valueCdi + '%'} readOnly />
-                    </label>
-                    <button className='active' onClick={e => getInfo('simulacoes')}>Simular</button>
+                        <label>Aporte Mensal
+                            <span>R$<input type="text" maxLength="9" id="aporteMensal" onChange={e => formatarMoeda('aporteMensal')} /></span>
+                        </label>
+                        <label>Rentabilidade
+                            <input type="text" id="rentabilidade" onKeyUp={e => formatarInputs('rentabilidade')} />
+                        </label>
+                        <label>CDI (ao ano)
+                            <input type="text" value={valueCdi + '%'} readOnly />
+                        </label>
+                        <button className='active' onClick={e => simular(e)}>Simular</button>
+                    </form>
                 </div>
             </div>
-        </div>
-            {simulacoes !== '' && 
-            <SimulationResult simulacoes={simulacoes} 
-                tipoIndexacao={tipoIndexacao} tipoRendimento={tipoRendimento} />}
+            {simulacoes !== '' &&
+                <SimulationResult simulacoes={simulacoes}
+                    tipoIndexacao={tipoIndexacao} tipoRendimento={tipoRendimento} />}
         </div>
     )
 }

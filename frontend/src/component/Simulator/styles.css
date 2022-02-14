@@ -4,13 +4,16 @@
     padding: 10px;
     background-color: rgb(236, 236, 236);
 }
+.containerInfos{
+    display: flex;
+}
 .containerSimulator .infos{
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 450px;
 }
-.containerSimulator .infos .form{
+.containerSimulator .infos form{
     display: flex;
     flex-direction: column;
     width: 200px;
