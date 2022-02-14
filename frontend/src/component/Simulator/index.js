@@ -98,49 +98,57 @@ const Simulator = () => {
                 <h3>Simulador</h3>
                 <div className='infos'>
                     <form>
-                        <div>
-                            <p>
-                                Rendimento
-                                <img src={iconInfo} alt="Icone de Informação" />
-                            </p>
-                            <div className='selectButton'>
-                                <div className='typeBruto active' onClick={handleTypeRend.typeBruto}>Bruto</div>
-                                <div className='typeLiquido' onClick={handleTypeRend.typeLiquido}>Líquido</div>
+                        <div className='tipos'>
+                            <div>
+                                <p>
+                                    Rendimento
+                                    <img src={iconInfo} alt="Icone de Informação" />
+                                </p>
+                                <div className='selectButton'>
+                                    <div className='typeBruto active' onClick={handleTypeRend.typeBruto}>Bruto</div>
+                                    <div className='typeLiquido' onClick={handleTypeRend.typeLiquido}>Líquido</div>
+                                </div>
+                            </div>
+                            <div>
+                                <p>
+                                    Tipos de indexação
+                                    <img src={iconInfo} alt="Icone de Informação" />
+                                </p>
+                                <div className='selectButton'>
+                                    <div className='typePre active' onClick={handleTypeIndex.typePre}>PRÉ</div>
+                                    <div className='typePos' onClick={handleTypeIndex.typePos}>POS</div>
+                                    <div className='typeFix' onClick={handleTypeIndex.typeFix}>FIXADO</div>
+                                </div>
                             </div>
                         </div>
-                        <label>Aporte Inicial
-                            <span>R$<input type="text" maxLength="9" id="aporteInicial" onChange={e => formatarMoeda('aporteInicial')} /></span>
-                        </label>
-                        <label>Prazo em meses
-                            <input type="text" id="prazoMeses" onChange={e => formatarInputs('prazoMeses')} />
-                        </label>
-                        <label>IPCA (ao ano)
-                            <input type="text" value={valueIpca + '%'} readOnly />
-                        </label>
-                        <button onClick={limparCampos}>Limpar campos</button>
-                    </form>
-                    <form>
-                        <div>
-                            <p>
-                                Tipos de indexação
-                                <img src={iconInfo} alt="Icone de Informação" />
-                            </p>
-                            <div className='selectButton'>
-                                <div className='typePre active' onClick={handleTypeIndex.typePre}>PRÉ</div>
-                                <div className='typePos' onClick={handleTypeIndex.typePos}>POS</div>
-                                <div className='typeFix' onClick={handleTypeIndex.typeFix}>FIXADO</div>
-                            </div>
+                        <div className='tipos'>
+                            <label>Aporte Inicial
+                                <span>R$<input type="text" maxLength="9" id="aporteInicial" onChange={e => formatarMoeda('aporteInicial')} /></span>
+                            </label>
+                            <label>Aporte Mensal
+                                <span>R$<input type="text" maxLength="9" id="aporteMensal" onChange={e => formatarMoeda('aporteMensal')} /></span>
+                            </label>
                         </div>
-                        <label>Aporte Mensal
-                            <span>R$<input type="text" maxLength="9" id="aporteMensal" onChange={e => formatarMoeda('aporteMensal')} /></span>
-                        </label>
-                        <label>Rentabilidade
-                            <input type="text" id="rentabilidade" onKeyUp={e => formatarInputs('rentabilidade')} />
-                        </label>
-                        <label>CDI (ao ano)
-                            <input type="text" value={valueCdi + '%'} readOnly />
-                        </label>
-                        <button className='active' onClick={e => simular(e)}>Simular</button>
+                        <div className='tipos'>
+                            <label>Prazo em meses
+                                <input type="text" id="prazoMeses" onChange={e => formatarInputs('prazoMeses')} />
+                            </label>
+                            <label>Rentabilidade
+                                <input type="text" id="rentabilidade" onKeyUp={e => formatarInputs('rentabilidade')} />
+                            </label>
+                        </div>
+                        <div className='tipos'>
+                            <label>IPCA (ao ano)
+                                <input type="text" value={valueIpca + '%'} readOnly />
+                            </label>
+                            <label>CDI (ao ano)
+                                <input type="text" value={valueCdi + '%'} readOnly />
+                            </label>
+                        </div>
+                        <div className='tipos'>
+                            <button onClick={limparCampos}>Limpar campos</button>
+                            <button className='active' onClick={e => simular(e)}>Simular</button>
+                        </div>
                     </form>
                 </div>
             </div>

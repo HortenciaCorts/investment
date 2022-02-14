@@ -16,16 +16,29 @@
 .containerSimulator .infos form{
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 450px;
     padding: 20px 0;
+}
+.containerSimulator .infos form .tipos{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.containerSimulator .infos form .tipos div{
+    width: 200px;
 }
 h1{
     text-align: center;
+    margin-bottom: 15px;
+}
+h3{
+    margin: 15px 0;
 }
 p{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 200px;
     padding: 10px 0;
 }
 .active{
@@ -35,12 +48,12 @@ p{
 .selectButton{
     display: flex;
 }
-.selectButton div{
+.selectButton  div{
     display: flex;
     align-items: center;
     justify-content: center;
     
-    width: 90px;
+    width: 65px;
     height: 36px;
 
     border: 1px solid rgb(59, 59, 59);
@@ -53,6 +66,7 @@ p{
     border-radius: 0 8px 8px 0;
 }
 label{
+    width: 200px;
     margin: 20px 0;
     height: 68px;
 }
@@ -78,20 +92,39 @@ input{
     border: none;
     border-bottom: 1px solid black;
     outline: none;
-    
 }
 input[type=number]::-webkit-inner-spin-button { 
     -webkit-appearance: none;
 }
 button{
-    padding: 10px;
+    cursor: pointer;
+    width: 200px;
     font-weight: bold;
+
+    padding: 10px;
+    margin-top: 20px;
     border: 1px solid #000;
     border-radius: 8px;
-    margin-top: 20px;
-    cursor: pointer;
 }
 button.active{
     color: #000;
     border-color: #ED8E53;
+}
+
+@media (max-width: 840px){
+    .containerInfos{
+        flex-direction: column;
+    }
+    .containerSimulator .infos{
+        margin: auto;
+    }
+}
+@media (max-width: 560px){
+    .containerSimulator .infos form{
+        width: 200px;
+        margin: auto;
+    }
+    .containerSimulator .infos form .tipos{
+        flex-direction: column;
+    }
 }
