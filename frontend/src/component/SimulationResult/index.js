@@ -51,6 +51,7 @@ const SimulationResult = ({ simulacoes, tipoIndexacao, tipoRendimento }) => {
                     R$ {ganhoLiquido.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
                 </div>
             </div>
+            <div className='grafico'>oi</div>
         </div>
     )
 }
