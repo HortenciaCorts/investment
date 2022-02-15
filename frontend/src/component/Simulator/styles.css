@@ -126,7 +126,6 @@ button.active{
 }
 @media (max-width: 560px){
     .containerSimulator .infos{
-        
         width: auto;
     }
     .containerSimulator .infos form{
