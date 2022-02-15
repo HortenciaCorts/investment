@@ -65,22 +65,6 @@ const Simulator = () => {
         getInfo('simulacoes');
     }
 
-    const formatarMoeda = (idName) => {
-        var elemento = document.getElementById(idName);
-        var valor = elemento.value;
-
-        valor = parseInt(valor.replace(/[\D]+/g, ''));
-        valor = valor + '';
-        valor = valor.replace(/([0-9]{2})$/g, ",$1");
-
-        if (valor.length > 6) {
-            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
-        }
-
-        elemento.value = valor;
-        if (valor === 'NaN') elemento.value = '';
-    }
-
     const formatarInputs = (idName) => {
         var elemento = document.getElementById(idName);
         var valor = elemento.value;
@@ -88,7 +72,15 @@ const Simulator = () => {
         valor = parseInt(valor.replace(/[\D]+/g, ''));
         valor = valor + '';
 
-        idName === 'prazoMeses' ? elemento.value = valor : elemento.value = valor + '%';
+        if (idName === 'aporteInicial' || idName === 'aporteMensal') {
+            valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+            if (valor.length > 6) {
+                valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+            }
+        }
+
+        idName === 'rentabilidade' ? elemento.value = valor + '%' : elemento.value = valor;
         if (valor === 'NaN') elemento.value = '';
     }
 
@@ -123,10 +115,10 @@ const Simulator = () => {
                         </div>
                         <div className='tipos'>
                             <label>Aporte Inicial
-                                <span>R$<input type="text" maxLength="9" id="aporteInicial" onChange={e => formatarMoeda('aporteInicial')} /></span>
+                                <span>R$<input type="text" maxLength="9" id="aporteInicial" onChange={e => formatarInputs('aporteInicial')} /></span>
                             </label>
                             <label>Aporte Mensal
-                                <span>R$<input type="text" maxLength="9" id="aporteMensal" onChange={e => formatarMoeda('aporteMensal')} /></span>
+                                <span>R$<input type="text" maxLength="9" id="aporteMensal" onChange={e => formatarInputs('aporteMensal')} /></span>
                             </label>
                         </div>
                         <div className='tipos'>
