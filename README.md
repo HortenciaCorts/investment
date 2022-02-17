@@ -16,6 +16,7 @@
 ### 💻 Sobre o Projeto<a id="sobre-projeto"></a>
 
 **Objetivos**: 
+
 - [x] Desenvolver o front-end de acordo com o wireframe fornecido, sendo que o gráfico não é obrigatório;
 - [x] Utilizar a API disponibilizada na documentação;
 - [x] README.md contendo informações básicas do projeto e como executá-lo.
@@ -25,21 +26,21 @@
 ### 🎨  Layout <a id="layout"></a>
     
 **Desktop**
+
 ![enter image description here](https://github.com/HortenciaCorts/investment/blob/main/frontend/src/assets/project/desktop.gif?raw=true)
    
 **Tablet**
+
 ![enter image description here](https://github.com/HortenciaCorts/investment/blob/main/frontend/src/assets/project/tablet.png?raw=true)
 
 **Mobile**
+
 ![enter image description here](https://github.com/HortenciaCorts/investment/blob/main/frontend/src/assets/project/mobile.png?raw=true)
 
  ### 🚀  Como executar o projeto <a id="executar-projeto"></a>
 
 Antes de começar, você vai precisar ter instalado em sua máquina uma das seguintes ferramentas:  
 [Git](https://git-scm.com/) ou um descompactador de arquivos
-
-#### 🎲Rodando a Aplicação
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:  [Git](https://git-scm.com/),  [Node.js](https://nodejs.org/pt-br/)
 
 Além disto é bom ter um editor para trabalhar com o código como  [VSCode](https://code.visualstudio.com/)
 
@@ -77,7 +78,7 @@ Você irá precisar de dois terminais para o backend e frontend
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
- - ReactJS
+- ReactJS
 - UseState
 - NodeJS
 - CSS
