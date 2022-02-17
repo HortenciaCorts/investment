@@ -23,7 +23,6 @@ const SimulationResult = ({ simulacoes, tipoIndexacao, tipoRendimento }) => {
     }, [simulacoes, tipoIndexacao, tipoRendimento]);
 
     const arrayGrafico = [];
-    // const height = [20, 35, 50, 65, 80, 95, 105, 125, 150, 165, 180, 195, 205, 225, 250, 265, 280, 295];
     const height = [];
     let size = 20;
     for (let i = 0; i < 18; i++) {
@@ -31,8 +30,6 @@ const SimulationResult = ({ simulacoes, tipoIndexacao, tipoRendimento }) => {
         size += 8
         height.push(size);
     }
-    console.log(arrayGrafico)
-    console.log(height)
     return (
         <div className="containerSimulationResult">
             <h3>Resultado da Simulação</h3>
