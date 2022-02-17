@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 20px 0;
 }
 .card{
     display: flex;
@@ -22,9 +21,84 @@
     padding: 5px;
     box-shadow: 1px 2px 3px 1px rgb(0 0 0 / 21%);
 }
+.containerProjecao{
+    position: relative;
+}
+.grafico{
+    display: flex;
+    flex-direction: column;
 
-@media (max-width: 825px){
+    margin: 20px 0;
+}
+.grafico > div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.grafico > div > small{
+    transform: rotate(270deg);
+    position: absolute;
+    top: 80px;
+    left: -30px;
+}
+.cardOrange, .cardBlack, .graficoNumber > span{
+    width: 22px;
+    height: 20px;
+    margin: 1px 2px;
+}
+.cardOrange{
+    background-color: #ED8E53;
+}
+.cardBlack{
+    background-color: #000000;
+}
+.graficoNumber > span{
+    text-align: center;
+}
+.grafico > small{
+    text-align: center;
+}
+.aportType{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; */
+}
+.aportType > span{
+    display: flex;
+    align-items: center;
+    max-width: 120px;
+}
+.aportType > span > div{
+    width: 15px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.aportType > span > div.colorOrange{
+    background-color: #ED8E53;
+}
+.aportType > span > div.colorBlack{
+    background-color: #000000;
+}
+
+@media (max-width: 990px){
     h3{
+        text-align: center;
+    }
+    .cardOrange, .cardBlack, .graficoNumber > span{
+        width: 15px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 840px){
+    .cardContainer{
+        width: 500px;
+        margin: auto;
+    }
+}
+@media (max-width: 825px){
+    h3, h5{
         text-align: center;
     }
     .cardContainer{
@@ -36,20 +110,20 @@
     .card{
         width: 150px;
     }
-}
-@media (max-width: 990px){
-    h3{
-        text-align: center;
+    .cardOrange, .cardBlack, .graficoNumber > span{
+        width: 15px;
     }
-}
-@media (max-width: 840px){
-    .cardContainer{
-        width: 500px;
-        margin: auto;
+    .cardOrange, .cardBlack, .graficoNumber > span{
+        width: 22px;
+        font-size: 14px;
     }
 }
 @media (max-width: 560px){
     .cardContainer{
     width: auto;
+    }
+    .cardOrange, .cardBlack, .graficoNumber > span{
+        width: 15px;
+        font-size: 12px;
     }
 }

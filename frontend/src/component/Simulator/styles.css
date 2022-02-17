@@ -66,10 +66,10 @@ p{
 }
 label{
     width: 200px;
-    margin: 18px 0;
+    margin: 21px 0;
     height: 60px;
 }
-span{
+label span{
     position: absolute;
     height: 50px;
 

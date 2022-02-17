@@ -22,6 +22,17 @@ const SimulationResult = ({ simulacoes, tipoIndexacao, tipoRendimento }) => {
         });
     }, [simulacoes, tipoIndexacao, tipoRendimento]);
 
+    const arrayGrafico = [];
+    // const height = [20, 35, 50, 65, 80, 95, 105, 125, 150, 165, 180, 195, 205, 225, 250, 265, 280, 295];
+    const height = [];
+    let size = 20;
+    for (let i = 0; i < 18; i++) {
+        arrayGrafico.push(i)
+        size += 8
+        height.push(size);
+    }
+    console.log(arrayGrafico)
+    console.log(height)
     return (
         <div className="containerSimulationResult">
             <h3>Resultado da Simulação</h3>
@@ -51,7 +62,41 @@ const SimulationResult = ({ simulacoes, tipoIndexacao, tipoRendimento }) => {
                     R$ {ganhoLiquido.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
                 </div>
             </div>
-            <div className='grafico'>oi</div>
+            <div className='containerProjecao'>
+                <h5>Projeção de valores</h5>
+                <div className='grafico'>
+                <div>
+                    <small>Valor (R$)</small>
+                </div>
+                    <div>
+                        {arrayGrafico.map((el, i) => (
+                            <div className='cardOrange' key={i} style={{height: `${height[i]}px`}} ></div>
+                        ))}
+                    </div>
+                    <div>
+                        {arrayGrafico.map(i => (
+                            <div className='cardBlack' key={i}></div>
+                        ))}
+                    </div>
+                    <div className='graficoNumber'>
+
+                        {arrayGrafico.map(i => (
+                            <span key={i}>{(i)}</span>
+                        ))}
+                    </div>
+                    <small>Tempo (meses)</small>
+                    <div className='aportType'>
+                        <span>
+                            <div className='colorOrange'></div>
+                            <p>Com aporte</p>
+                        </span>
+                        <span>
+                            <div className='colorBlack'></div>
+                            <p>Sem aporte</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
