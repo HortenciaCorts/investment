@@ -58,12 +58,6 @@
 .grafico > small{
     text-align: center;
 }
-.aportType{
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around; */
-}
 .aportType > span{
     display: flex;
     align-items: center;
